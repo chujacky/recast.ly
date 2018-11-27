@@ -6,7 +6,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selected: false
+      currentVideo = exampleVideoData[0];
     };
   }
   
@@ -25,7 +25,7 @@ class App extends React.Component {
     </nav>
     <div className="row">
       <div className="col-md-7">
-        <VideoPlayer />
+        <VideoPlayer video={this.state.currentVideo}/>
       </div>
       <div className="col-md-5">
         <VideoList videos={exampleVideoData}/>
