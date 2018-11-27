@@ -1,7 +1,30 @@
-var VideoPlayer = () => (
+var VideoPlayer = (props) => (
+  console.log("VIDEOPLAYER", props);
   <div className="video-player">
     <div className="embed-responsive embed-responsive-16by9">
-      <iframe className="embed-responsive-item" src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1" allowFullScreen></iframe>
+      <iframe className="embed-responsive-item" src=React.createElement(
+
+  "div",
+  { className: "video-player" },
+  React.createElement(
+    "div",
+    { className: "embed-responsive embed-responsive-16by9" },
+    React.createElement("iframe", { className: "embed-responsive-item", src: {props.video.snippet.thumbnails.default.url}, allowFullScreen: true })
+  ),
+  React.createElement(
+    "div",
+    { className: "video-player-details" },
+    React.createElement(
+      "h3",
+      null,
+      "Video Title"
+    ),
+    React.createElement(
+      "div",
+      null,
+      "Video Description"
+    )
+  ) allowFullScreen></iframe>
     </div>
     <div className="video-player-details">
       <h3>Video Title</h3>
