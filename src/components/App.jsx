@@ -5,17 +5,24 @@ import VideoPlayer from "./VideoPlayer.js"
 class App extends React.Component {
   constructor(props) {
     super(props);
+    
     this.state = {
-      currentVideo = exampleVideoData[0];
+      currentVideo : exampleVideoData[0],
+      videoList : exampleVideoData
     };
+    this.onTitleClick = this.onTitleClick.bind(this);
   }
   
-  onTitleClick() {
-    var chosenVideo = this;
+  onTitleClick(video) {
+   this.setState({
+      currentVideo: video
+    },
+   () => {console.log(this.state)}
+);
   }
 
   render() {
-    console.log(chosenVideo)
+    
     return (
     <div>
     <nav className="navbar">
@@ -25,10 +32,10 @@ class App extends React.Component {
     </nav>
     <div className="row">
       <div className="col-md-7">
-        <VideoPlayer video={this.state.currentVideo}/>
+        <VideoPlayer video={this.state.currentVideo} />
       </div>
       <div className="col-md-5">
-        <VideoList videos={exampleVideoData}/>
+        <VideoList videos={this.state.videoList} function={this.onTitleClick}/>
       </div>
     </div>
   </div>);
@@ -37,7 +44,7 @@ class App extends React.Component {
 
 }
   
-);
+
 
 // In the ES6 spec, files are "modules" and do not share a top-level scope
 // `var` declarations will only exist globally where explicitly defined
