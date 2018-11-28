@@ -1,25 +1,27 @@
+
 var searchYouTube = (options, callback) => {
   // TODO
+    // url: `https://www.googleapis.com/youtube/v3/search?part=snippet&q=YouTube+Data+API&type=video&videoCaption=closedCaption&key=${options.key}`, 
+
   $.ajax({
     
-    url: `https://www.googleapis.com/youtube/v3/search?part=snippet&q=YouTube+Data+API&type=video&videoCaption=closedCaption&key=${options.key}`, 
+    url: `https://www.googleapis.com/youtube/v3/search`, 
     type: 'GET',
     data: {'maxResults': options.max,
                  'part': 'snippet',
                  'q': options.query,
-                 'type': ''},
+                 'type': 'video', 
+                'key': options.key},
     contentType: 'application/json',
     success: (data) => {callback(data.items)},
     dataType: 'json',
     error: () => {console.log('error')}
   });
+  
+    // let myCallback = function(stuffBeingPassedIn) {
+    //   console.log('wow');
+    // }
 
-// console.log(buildApiRequest('GET',
-//                 '/youtube/v3/search',
-//                 {'maxResults': '10',
-//                  'part': 'snippet',
-//                  'q': 'data',
-//                  'type': ''})  
 };
 
 
