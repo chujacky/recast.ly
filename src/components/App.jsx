@@ -3,6 +3,7 @@ import exampleVideoData from "../data/exampleVideoData.js";
 import VideoPlayer from "./VideoPlayer.js";
 // import searchYouTube from "../lib/searchYouTube.js";
 import YOUTUBE_API_KEY from "../config/youtube.js";
+import Search from "./Search.js";
 
 class App extends React.Component {
   constructor(props) {
@@ -13,6 +14,7 @@ class App extends React.Component {
       videoList: exampleVideoData
     };
     this.onTitleClick = this.onTitleClick.bind(this);
+    this.onSearch = this.onSearch.bind(this);
   }
   
   onTitleClick(video) {
@@ -21,12 +23,21 @@ class App extends React.Component {
     });
   }
 
+  onSearch(topic) {
+    this.props.searchYouTube({ key: YOUTUBE_API_KEY, query: topic, max: 10 }, (data) => {
+      this.setState({
+        videoList: data
+      });
+    });
+  }
+  
+
   componentDidMount() {
     console.log('comp');
     this.props.searchYouTube({ key: YOUTUBE_API_KEY, query: 'cats', max: 10 }, (data) => {
       this.setState({
-          videoList: data,
-          currentVideo: data[0]
+        videoList: data,
+        currentVideo: data[0]
       });
       // this.state.videoList = data;    
     });
@@ -37,7 +48,7 @@ class App extends React.Component {
 <div>
     <nav className="navbar">
       <div className="col-md-6 offset-md-3">
-        <div><h5><em>search</em> view goes here</h5></div>
+        <Search search={this.onSearch}/>
       </div>
     </nav>
     <div className="row">

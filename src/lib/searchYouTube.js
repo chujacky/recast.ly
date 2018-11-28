@@ -2,6 +2,7 @@
 var searchYouTube = (options, callback) => {
   // TODO
     // url: `https://www.googleapis.com/youtube/v3/search?part=snippet&q=YouTube+Data+API&type=video&videoCaption=closedCaption&key=${options.key}`, 
+  // var MyToggleDebounced = _.debounce(MyToggleFunction, 500);
 
   $.ajax({
     
